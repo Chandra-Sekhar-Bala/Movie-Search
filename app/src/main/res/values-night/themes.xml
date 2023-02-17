@@ -16,6 +16,7 @@
         <item name="black_white_tint_color">@color/white</item>
         <item name="movie_txt_color">@color/white</item>
         <item name="rectangle_bg_color">@color/dark_grey</item>
+        <item name="grey_border_color">@color/light_blue</item>
 
     </style>
 </resources>

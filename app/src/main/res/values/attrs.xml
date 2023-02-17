@@ -3,4 +3,6 @@
     <attr name="black_white_tint_color" format="color"/>
     <attr name="movie_txt_color" format="color"/>
     <attr name="rectangle_bg_color" format="color"/>
+    <attr name="grey_border_color" format="color"/>
+
 </resources>
