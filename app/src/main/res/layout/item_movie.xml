@@ -17,15 +17,16 @@
 
     <TextView
         android:id="@+id/movie_title"
-        android:layout_width="140dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        tools:text="Venom Let There be Carnage"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="8dp"
         android:textSize="16sp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/movie_poster_img"
-        app:layout_constraintTop_toTopOf="@+id/movie_poster_img" />
+        app:layout_constraintTop_toTopOf="@+id/movie_poster_img"
+        tools:text="Venom Let There be Carnage" />
 
     <ImageView
         android:id="@+id/imageView4"
