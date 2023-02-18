@@ -17,5 +17,11 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment)
         binding.bottomNavigation.setupWithNavController(navController)
 
+        // Hide navigation bar while showing details
+        navController.addOnDestinationChangedListener{_, dest, _ ->
+//            if(dest.id == R.id.movieDetailsFragment){
+                supportActionBar?.hide()
+//            }
+        }
     }
 }

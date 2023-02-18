@@ -1,107 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="16dp">
 
     <ImageView
-        android:id="@+id/poster_movie"
+        android:id="@+id/movie_poster_img"
         android:layout_width="130dp"
         android:layout_height="160dp"
-        android:background="@drawable/rectangle_bg"
         android:scaleType="centerCrop"
-        android:src="@drawable/venom"
-        app:circularflow_radiusInDP="10dp"
+        tools:src="@drawable/venom"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/title_movie"
+        android:id="@+id/movie_title"
         android:layout_width="140dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="Venom Let There be Carnage"
-
+        tools:text="Venom Let There be Carnage"
+        android:layout_marginTop="4dp"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/poster_movie"
-        app:layout_constraintTop_toTopOf="@+id/poster_movie" />
+        app:layout_constraintStart_toEndOf="@+id/movie_poster_img"
+        app:layout_constraintTop_toTopOf="@+id/movie_poster_img" />
 
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="15dp"
         android:layout_height="0dp"
         android:src="@drawable/star_icon"
-        app:layout_constraintBottom_toBottomOf="@+id/rating"
-        app:layout_constraintStart_toStartOf="@+id/title_movie"
-        app:layout_constraintTop_toTopOf="@+id/rating"
+        app:layout_constraintBottom_toBottomOf="@+id/movie_rating"
+        app:layout_constraintStart_toStartOf="@+id/movie_title"
+        app:layout_constraintTop_toTopOf="@+id/movie_rating"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/rating"
+        android:id="@+id/movie_rating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
         android:layout_marginTop="10dp"
         android:fontFamily="monospace"
-        android:text="6.4/10 IMDB"
+        tools:text="6.4/10 IMDB"
         android:textColor="@color/deep_grey"
         android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@+id/imageView4"
-        app:layout_constraintTop_toBottomOf="@+id/title_movie" />
+        app:layout_constraintTop_toBottomOf="@+id/movie_title" />
+
 
     <TextView
         android:id="@+id/tag1_movie"
         style="@style/movieTag_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="Tag1"
         android:layout_marginStart="0dp"
+        android:layout_marginTop="12dp"
+        tools:text="Tag1"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="@+id/imageView4"
         app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
     <TextView
         android:id="@+id/tag2_movie"
+        style="@style/movieTag_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/movieTag_style"
-        android:text="Tag2"
+        android:text="Taghhhh "
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/tag1_movie"
         app:layout_constraintStart_toEndOf="@+id/tag1_movie"
         app:layout_constraintTop_toTopOf="@+id/tag1_movie" />
 
     <TextView
         android:id="@+id/tag3_movie"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         style="@style/movieTag_style"
-        android:text="Tag3"
-        app:layout_constraintBottom_toBottomOf="@+id/tag2_movie"
-        app:layout_constraintStart_toEndOf="@+id/tag2_movie"
-        app:layout_constraintTop_toTopOf="@+id/tag2_movie" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="13dp"
-        android:layout_height="14dp"
-        android:layout_marginTop="16dp"
-        app:tint="?attr/black_white_tint_color"
-        app:layout_constraintStart_toStartOf="@+id/tag1_movie"
-        app:layout_constraintTop_toBottomOf="@+id/tag1_movie"
-        app:srcCompat="@drawable/clock_png" />
-
-    <TextView
-        android:id="@+id/Time_movie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:text="1Hour 47mins"
-        android:textSize="12sp"
-        android:fontFamily="@font/mulish"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
-        app:layout_constraintStart_toEndOf="@+id/imageView3"
-        app:layout_constraintTop_toTopOf="@+id/imageView3"
-        app:layout_constraintVertical_bias="1.0" />
+        tools:text="Tag3"
+        android:visibility="gone"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="0dp"
+        app:layout_constraintStart_toStartOf="@+id/tag1_movie"
+        app:layout_constraintTop_toBottomOf="@+id/tag1_movie" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
