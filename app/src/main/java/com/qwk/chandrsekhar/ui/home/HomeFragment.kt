@@ -2,18 +2,15 @@ package com.qwk.chandrsekhar.ui.home
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
 import android.widget.Toast
-import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.qwk.chandrsekhar.R
 import com.qwk.chandrsekhar.adapter.MovieAdapter
 import com.qwk.chandrsekhar.adapter.MovieClickListener
 import com.qwk.chandrsekhar.databinding.FragmentHomeBinding
@@ -150,5 +147,9 @@ class HomeFragment : Fragment(), MovieClickListener{
         // swap in details fragment
         val action = HomeFragmentDirections.actionHomeFragmentToMovieDetailsFragment(movieId)
         findNavController().navigate(action)
+    }
+
+    override fun deleteFromDatabase(id: Int) {
+
     }
 }

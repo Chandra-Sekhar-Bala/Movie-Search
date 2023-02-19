@@ -10,21 +10,21 @@
         android:id="@+id/poster_image"
         android:layout_width="0dp"
         android:layout_height="290dp"
-        tools:background="@drawable/venom"
         android:scaleType="centerInside"
-        tools:src="@drawable/venom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:background="@drawable/venom"
+        tools:src="@drawable/venom" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="-15dp"
+        android:background="@drawable/movie_details_bg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="-15dp"
-        android:background="@drawable/movie_details_bg"
         app:layout_constraintTop_toBottomOf="@+id/poster_image">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -37,12 +37,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_bold"
-                tools:text="Venom Let The Carnage Begin"
                 android:textSize="22sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/save_as_favorite"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Venom Let The Carnage Begin" />
 
             <TextView
                 android:id="@+id/tagLine"
@@ -81,11 +81,11 @@
                 android:layout_marginStart="2dp"
                 android:layout_marginTop="10dp"
                 android:fontFamily="monospace"
-                tools:text="6.4/10 IMDB"
                 android:textColor="@color/deep_grey"
                 android:textSize="16sp"
                 app:layout_constraintStart_toEndOf="@+id/imageView4"
-                app:layout_constraintTop_toBottomOf="@+id/tagLine" />
+                app:layout_constraintTop_toBottomOf="@+id/tagLine"
+                tools:text="6.4/10 IMDB" />
 
             <TextView
                 android:id="@+id/tag1_movie"
@@ -94,32 +94,32 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="0dp"
                 android:layout_marginTop="12dp"
-                tools:text="Tag1"
                 android:textSize="13sp"
                 app:layout_constraintStart_toStartOf="@+id/imageView4"
-                app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+                app:layout_constraintTop_toBottomOf="@+id/imageView4"
+                tools:text="Tag1" />
 
             <TextView
                 android:id="@+id/tag2_movie"
                 style="@style/movieTag_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="Tag2"
                 android:textSize="13sp"
                 app:layout_constraintBottom_toBottomOf="@+id/tag1_movie"
                 app:layout_constraintStart_toEndOf="@+id/tag1_movie"
-                app:layout_constraintTop_toTopOf="@+id/tag1_movie" />
+                app:layout_constraintTop_toTopOf="@+id/tag1_movie"
+                tools:text="Tag2" />
 
             <TextView
                 android:id="@+id/tag3_movie"
                 style="@style/movieTag_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="Tag3"
                 android:textSize="13sp"
                 app:layout_constraintBottom_toBottomOf="@+id/tag2_movie"
                 app:layout_constraintStart_toEndOf="@+id/tag2_movie"
-                app:layout_constraintTop_toTopOf="@+id/tag2_movie" />
+                app:layout_constraintTop_toTopOf="@+id/tag2_movie"
+                tools:text="Tag3" />
 
             <TextView
                 android:id="@+id/textView2"
@@ -127,7 +127,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="16dp"
-                tools:text="Release Date"
+                android:text="Release Date"
                 android:textColor="@color/deep_grey"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="@+id/tag1_movie"
@@ -138,17 +138,17 @@
                 style="@style/movie_details"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                tools:text="2010-02-14"
                 app:layout_constraintEnd_toStartOf="@+id/release_status"
                 app:layout_constraintStart_toStartOf="@+id/textView2"
-                app:layout_constraintTop_toBottomOf="@+id/textView2" />
+                app:layout_constraintTop_toBottomOf="@+id/textView2"
+                tools:text="2010-02-14" />
 
             <TextView
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                tools:text="Popularity"
+                android:text="Popularity"
                 android:textColor="@color/deep_grey"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="@+id/textView2"
@@ -173,18 +173,18 @@
                 style="@style/movie_details"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                tools:text="Released"
                 app:layout_constraintStart_toStartOf="@+id/textView3"
-                app:layout_constraintTop_toBottomOf="@+id/textView3" />
+                app:layout_constraintTop_toBottomOf="@+id/textView3"
+                tools:text="Released" />
 
             <TextView
                 android:id="@+id/total_votes"
                 style="@style/movie_details"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="21243"
                 app:layout_constraintStart_toStartOf="@+id/textView4"
-                app:layout_constraintTop_toBottomOf="@+id/textView4" />
+                app:layout_constraintTop_toBottomOf="@+id/textView4"
+                tools:text="21243" />
 
             <TextView
                 android:id="@+id/textView5"
@@ -192,7 +192,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:fontFamily="@font/poppins_bold"
-                tools:text="About the movie"
+                android:text="About the movie"
                 android:textColor="?attr/movie_txt_color"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="@+id/total_votes"
@@ -203,21 +203,11 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/mulish"
-                tools:text="World War II soldier-turned-U.S. Marshal Teddy Daniels investigates the disappearance of a patient from a hospital for the criminally insane, but his efforts are compromised by troubling visions and a mysterious doctor"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/textView5"
-                app:layout_constraintTop_toBottomOf="@+id/textView5" />
+                app:layout_constraintTop_toBottomOf="@+id/textView5"
+                tools:text="World War II soldier-turned-U.S. Marshal Teddy Daniels investigates the disappearance of a patient from a hospital for the criminally insane, but his efforts are compromised by troubling visions and a mysterious doctor" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </ScrollView>
-
-    <ImageView
-        android:id="@+id/temp_img"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

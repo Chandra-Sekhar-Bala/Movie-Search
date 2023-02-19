@@ -72,7 +72,11 @@ class MovieDetailsFragment : Fragment() {
         binding.movieTitle.text = item.title
         binding.tagLine.text = item.tagline
         binding.movieDescription.text = item.about
-        binding.movieRating.text = requireActivity().getString(R.string.imdb_rating, item.rating.toString())
+        binding.movieRating.text =
+            requireActivity().getString(R.string.imdb_rating, item.rating.toString())
+        binding.releaseDate.text = item.release_date
+        binding.releaseStatus.text = item.status
+        binding.totalVotes.text = item.popularity.toString()
 
         // to set background
         Glide.with(requireActivity())
@@ -99,5 +103,6 @@ class MovieDetailsFragment : Fragment() {
         binding.tag1Movie.text = item.genres[0].name
         binding.tag2Movie.text = item.genres[1].name
         binding.tag3Movie.text = item.genres[2].name
+
     }
 }
