@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -34,10 +35,6 @@ class HomeFragment : Fragment(), MovieClickListener{
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        binding.popularTxt.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_movieDetailsFragment)
-        }
 
         // instantiate
         viewModel = ViewModelProvider(this)[HomeViewModel::class.java]
@@ -150,6 +147,8 @@ class HomeFragment : Fragment(), MovieClickListener{
     }
     // click listener callback  from Adapter
     override fun onMovieItemCLickListener(movieId: Int) {
-
+        // swap in details fragment
+        val action = HomeFragmentDirections.actionHomeFragmentToMovieDetailsFragment(movieId)
+        findNavController().navigate(action)
     }
 }
