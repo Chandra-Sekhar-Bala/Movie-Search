@@ -14,11 +14,12 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.qwk.chandrsekhar.Constants
 import com.qwk.chandrsekhar.R
 import com.qwk.chandrsekhar.model.MovieResponse
+import com.qwk.chandrsekhar.ui.favorite.FavoriteFragment
 import kotlin.reflect.jvm.internal.impl.utils.DFS.VisitedWithSet
 
 class MovieAdapter(
     private val context: Context,
-    private val listener: MovieClickListener?,
+    private val listener: MovieClickListener,
     private val showFavorite: Boolean
 ) :
     ListAdapter<MovieResponse.Movie, MovieAdapter.MyViewHolder>(DiffCallBack) {
@@ -56,9 +57,11 @@ class MovieAdapter(
 
         // Listening to movie item click
         holder.itemView.setOnClickListener {
-            if (listener !== null) {
-                listener.onMovieItemCLickListener(data.id)
-            }
+            listener.onMovieItemCLickListener(data.id)
+        }
+        // delete the particular item from database
+        holder.show_favorite.setOnClickListener{
+            listener.deleteFromDatabase(data.id)
         }
     }
 
@@ -95,4 +98,5 @@ class MovieAdapter(
 
 interface MovieClickListener {
     fun onMovieItemCLickListener(movieId: Int)
+    fun deleteFromDatabase(id: Int)
 }

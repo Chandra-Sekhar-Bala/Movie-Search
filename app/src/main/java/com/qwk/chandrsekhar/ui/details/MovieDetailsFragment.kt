@@ -99,10 +99,14 @@ class MovieDetailsFragment : Fragment() {
             .placeholder(R.drawable.movie_icon)
             .fitCenter()
             .into(binding.posterImage)
-
-        binding.tag1Movie.text = item.genres[0].name
-        binding.tag2Movie.text = item.genres[1].name
-        binding.tag3Movie.text = item.genres[2].name
-
+        try {
+            binding.tag1Movie.text = item.genres[0].name
+            binding.tag1Movie.visibility = View.VISIBLE
+            binding.tag2Movie.text = item.genres[1].name
+            binding.tag2Movie.visibility = View.VISIBLE
+            binding.tag3Movie.text = item.genres[2].name
+            binding.tag3Movie.visibility = View.VISIBLE
+        } catch (_: java.lang.Exception) {
+        }
     }
 }

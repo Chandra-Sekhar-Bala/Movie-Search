@@ -1,20 +1,63 @@
 package com.qwk.chandrsekhar.ui.favorite
 
-import androidx.lifecycle.ViewModelProvider
+import android.app.AlertDialog
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.qwk.chandrsekhar.R
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.qwk.chandrsekhar.adapter.MovieAdapter
+import com.qwk.chandrsekhar.adapter.MovieClickListener
+import com.qwk.chandrsekhar.databinding.FragmentFavoriteBinding
+import com.qwk.chandrsekhar.repository.database.DatabaseProvider
 
-class FavoriteFragment : Fragment() {
-
+class FavoriteFragment : Fragment(), MovieClickListener{
+    private lateinit var binding: FragmentFavoriteBinding
+    private lateinit var viewModel: FavoriteViewModel
+    private lateinit var adapter: MovieAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_saved, container, false)
+    ): View {
+        binding = FragmentFavoriteBinding.inflate(layoutInflater)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val dao = DatabaseProvider.getDatabase(requireContext()).movieDAO()
+        val factory = FavoriteViewModelFactory(dao)
+        viewModel = ViewModelProvider(this, factory)[FavoriteViewModel::class.java]
+        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        adapter = MovieAdapter(requireContext(), this,true)
+        binding.recyclerView.adapter = adapter
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.getAllMovies()
+        viewModel.movies.observe(this){
+            adapter.submitList(it)
+        }
+    }
+    override fun onMovieItemCLickListener(movieId: Int) {
+        val action = FavoriteFragmentDirections.actionFavoriteFragmentToMovieDetailsFragment(movieId)
+        findNavController().navigate(action)
+
+    }
+
+    override fun deleteFromDatabase(id: Int) {
+        AlertDialog.Builder(requireContext())
+            .setTitle("Remove from favorite")
+            .setMessage("Do you really want to delete this movie from favorite")
+            .setPositiveButton("Yes"){_, _ ->
+                viewModel.deleteFromDatabase(id)
+            }.setNegativeButton("No"){_,_->}
+            .show()
     }
 
 }

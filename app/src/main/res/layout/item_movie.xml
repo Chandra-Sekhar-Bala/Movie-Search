@@ -32,7 +32,7 @@
         android:id="@+id/save_as_favorite"
         android:layout_width="30dp"
         android:layout_height="22dp"
-        android:src="@drawable/favorite_icon"
+        android:src="@drawable/favorite_icon_filled"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/movie_title"
         app:layout_constraintEnd_toEndOf="parent"

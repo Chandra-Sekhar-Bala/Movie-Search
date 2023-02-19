@@ -19,7 +19,10 @@ object DatabaseProvider {
                 context.applicationContext,
                 MovieDatabase::class.java,
                 "movies"
-            ).build().also { instance = it }
+
+            )
+                .fallbackToDestructiveMigration()
+                .build().also { instance = it }
         }
     }
 }
