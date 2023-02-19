@@ -17,5 +17,7 @@
         <item name="movie_txt_color">@color/deepBlue</item>
         <item name="rectangle_bg_color">@color/white</item>
         <item name="grey_border_color">@color/grey</item>
+        <item name="tag_text_color">@color/light_blue</item>
+
     </style>
 </resources>

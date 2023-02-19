@@ -4,5 +4,6 @@
     <attr name="movie_txt_color" format="color"/>
     <attr name="rectangle_bg_color" format="color"/>
     <attr name="grey_border_color" format="color"/>
+    <attr name="tag_text_color" format="color"/>
 
 </resources>

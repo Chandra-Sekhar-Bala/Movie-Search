@@ -23,10 +23,20 @@
         android:layout_marginTop="8dp"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/movie_poster_img"
         app:layout_constraintTop_toTopOf="@+id/movie_poster_img"
+        app:layout_constraintEnd_toStartOf="@+id/save_as_favorite"
         tools:text="Venom Let There be Carnage" />
+
+    <ImageView
+        android:id="@+id/save_as_favorite"
+        android:layout_width="30dp"
+        android:layout_height="22dp"
+        android:src="@drawable/favorite_icon"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/movie_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/movie_title" />
 
     <ImageView
         android:id="@+id/imageView4"

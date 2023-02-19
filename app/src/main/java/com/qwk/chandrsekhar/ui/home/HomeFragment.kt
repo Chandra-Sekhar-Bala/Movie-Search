@@ -41,13 +41,13 @@ class HomeFragment : Fragment(), MovieClickListener{
 
         // popular movie recycler setup
         popularLayoutManager = LinearLayoutManager(requireContext())
-        popularMovieAdapter = MovieAdapter(requireContext(), this)
+        popularMovieAdapter = MovieAdapter(requireContext(), this, false)
         binding.popularRecycler.layoutManager = popularLayoutManager
         binding.popularRecycler.adapter = popularMovieAdapter
 
         // search movie recycler setup
         searchLayoutManager = LinearLayoutManager(requireContext())
-        searchMovieAdapter = MovieAdapter(requireContext(), this)
+        searchMovieAdapter = MovieAdapter(requireContext(), this, false)
         binding.searchResultRecycler.layoutManager = searchLayoutManager
         binding.searchResultRecycler.adapter = searchMovieAdapter
 

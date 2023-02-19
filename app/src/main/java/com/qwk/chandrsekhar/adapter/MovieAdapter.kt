@@ -14,8 +14,13 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.qwk.chandrsekhar.Constants
 import com.qwk.chandrsekhar.R
 import com.qwk.chandrsekhar.model.MovieResponse
+import kotlin.reflect.jvm.internal.impl.utils.DFS.VisitedWithSet
 
-class MovieAdapter(private val context: Context, private val listener: MovieClickListener?) :
+class MovieAdapter(
+    private val context: Context,
+    private val listener: MovieClickListener?,
+    private val showFavorite: Boolean
+) :
     ListAdapter<MovieResponse.Movie, MovieAdapter.MyViewHolder>(DiffCallBack) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_movie, parent, false)
@@ -23,6 +28,10 @@ class MovieAdapter(private val context: Context, private val listener: MovieClic
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+
+        if (showFavorite) {
+            holder.show_favorite.visibility = View.VISIBLE
+        }
         val data = getItem(position)
         holder.title.text = data.title
         holder.rating.text = context.getString(R.string.imdb_rating, data.rating.toString())
@@ -60,6 +69,7 @@ class MovieAdapter(private val context: Context, private val listener: MovieClic
         val tag2 = itemView.findViewById(R.id.tag2_movie) as TextView
         val tag3 = itemView.findViewById(R.id.tag3_movie) as TextView
         val posterImg = itemView.findViewById(R.id.movie_poster_img) as ImageView
+        val show_favorite = itemView.findViewById(R.id.save_as_favorite) as ImageView
     }
 
     object DiffCallBack : DiffUtil.ItemCallback<MovieResponse.Movie>() {
