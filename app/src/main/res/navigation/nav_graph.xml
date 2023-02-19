@@ -27,6 +27,9 @@
         <action
             android:id="@+id/action_movieDetailsFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <argument
+            android:name="movie_id"
+            app:argType="integer" />
     </fragment>
 
 </navigation>

@@ -10,16 +10,13 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.qwk.chandrsekhar.Constants
 import com.qwk.chandrsekhar.R
 import com.qwk.chandrsekhar.model.MovieResponse
-import com.qwk.chandrsekhar.ui.home.HomeFragment
 
-class MovieAdapter(private val context: Context) :
+class MovieAdapter(private val context: Context, private val listener: MovieClickListener?) :
     ListAdapter<MovieResponse.Movie, MovieAdapter.MyViewHolder>(DiffCallBack) {
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_movie, parent, false)
         return MyViewHolder(view)
@@ -47,6 +44,13 @@ class MovieAdapter(private val context: Context) :
             .transform(RoundedCorners(60))
             .placeholder(R.drawable.movie_icon)
             .into(holder.posterImg)
+
+        // Listening to movie item click
+        holder.itemView.setOnClickListener {
+            if (listener !== null) {
+                listener.onMovieItemCLickListener(data.id)
+            }
+        }
     }
 
     class MyViewHolder(itemView: View) : ViewHolder(itemView) {
@@ -77,4 +81,8 @@ class MovieAdapter(private val context: Context) :
     private fun getGenreName(genreId: Int): String {
         return Constants.GENRE_MAP[genreId] ?: "Unknown"
     }
+}
+
+interface MovieClickListener {
+    fun onMovieItemCLickListener(movieId: Int)
 }

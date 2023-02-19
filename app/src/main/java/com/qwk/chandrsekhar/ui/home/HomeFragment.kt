@@ -14,9 +14,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.qwk.chandrsekhar.R
 import com.qwk.chandrsekhar.adapter.MovieAdapter
+import com.qwk.chandrsekhar.adapter.MovieClickListener
 import com.qwk.chandrsekhar.databinding.FragmentHomeBinding
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), MovieClickListener{
     private lateinit var binding: FragmentHomeBinding
     private lateinit var viewModel: HomeViewModel
     private lateinit var popularMovieAdapter: MovieAdapter
@@ -43,13 +44,13 @@ class HomeFragment : Fragment() {
 
         // popular movie recycler setup
         popularLayoutManager = LinearLayoutManager(requireContext())
-        popularMovieAdapter = MovieAdapter(requireContext())
+        popularMovieAdapter = MovieAdapter(requireContext(), this)
         binding.popularRecycler.layoutManager = popularLayoutManager
         binding.popularRecycler.adapter = popularMovieAdapter
 
         // search movie recycler setup
         searchLayoutManager = LinearLayoutManager(requireContext())
-        searchMovieAdapter = MovieAdapter(requireContext())
+        searchMovieAdapter = MovieAdapter(requireContext(), this)
         binding.searchResultRecycler.layoutManager = searchLayoutManager
         binding.searchResultRecycler.adapter = searchMovieAdapter
 
@@ -88,7 +89,7 @@ class HomeFragment : Fragment() {
             }
         }
 
-        // for pagination : Listening to recyclerview scrolling
+        // for pagination : Listening to Popular movie recycler scrolling
         binding.popularRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
@@ -100,6 +101,7 @@ class HomeFragment : Fragment() {
             }
         })
 
+        // for pagination : Listening to Search movie recycler scrolling
         binding.searchResultRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
@@ -145,5 +147,9 @@ class HomeFragment : Fragment() {
                 .setDuration(300)
                 .withEndAction { binding.searchResultRecycler.visibility = View.GONE }
         }
+    }
+    // click listener callback  from Adapter
+    override fun onMovieItemCLickListener(movieId: Int) {
+
     }
 }
