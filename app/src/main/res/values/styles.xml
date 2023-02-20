@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <style name="Theme.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/light_blue</item>
+        <item name="windowSplashScreenIconBackgroundColor">@color/deep_grey</item>
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher_foreground</item>
+        <item name="windowSplashScreenAnimationDuration">500</item>
+        <item name="postSplashScreenTheme">@style/Theme.QWK</item>
+    </style>
 
     <style name="movieTag_style" parent="Widget.MaterialComponents.TextView">
         <item name="android:background">@drawable/oval_bg</item>
