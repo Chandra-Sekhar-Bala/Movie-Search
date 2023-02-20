@@ -14,6 +14,8 @@ import kotlinx.coroutines.withContext
 
 enum class Progress { LOADING, SUCCESSFUL, FAILED }
 class HomeViewModel : ViewModel() {
+
+    // popular movie section
     private var _popularMovieData = MutableLiveData<List<MovieResponse.Movie>?>()
     val popularMovieData: LiveData<List<MovieResponse.Movie>?>
         get() = _popularMovieData
@@ -23,6 +25,7 @@ class HomeViewModel : ViewModel() {
     val popularMovieProgress: LiveData<Progress>
         get() = _popularMovieProgress
 
+    // Search movie section
     private var _searchMovieData = MutableLiveData<List<MovieResponse.Movie>?>()
     val searchMovieData: LiveData<List<MovieResponse.Movie>?>
         get() = _searchMovieData
@@ -37,7 +40,7 @@ class HomeViewModel : ViewModel() {
         getPopularMovies()
     }
 
-    private fun getPopularMovies() {
+    fun getPopularMovies() {
         viewModelScope.launch {
             _popularMovieProgress.value = Progress.LOADING
             val data = _getPopularMovies()

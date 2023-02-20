@@ -53,6 +53,10 @@ class HomeFragment : Fragment(), MovieClickListener{
     override fun onResume() {
         super.onResume()
 
+        binding.refreshBtn.setOnClickListener{
+            viewModel.getPopularMovies()
+        }
+
         viewModel.popularMovieData.observe(this) {
             popularMovieAdapter.submitList(it)
         }
@@ -64,6 +68,9 @@ class HomeFragment : Fragment(), MovieClickListener{
             }
             if (it == Progress.FAILED) {
                 Toast.makeText(requireContext(), "Check your internet", Toast.LENGTH_LONG).show()
+                showNoInternetLayout(true)
+            }else if(it == Progress.SUCCESSFUL){
+                showNoInternetLayout(false)
             }
         }
 
@@ -78,8 +85,11 @@ class HomeFragment : Fragment(), MovieClickListener{
                 Progress.SUCCESSFUL -> View.GONE
                 Progress.FAILED -> View.GONE
             }
-            if (it == Progress.FAILED) {
+            if (it == Progress.FAILED ) {
                 Toast.makeText(requireContext(), "Check your internet", Toast.LENGTH_LONG).show()
+                showNoInternetLayout(true)
+            }else if(it == Progress.SUCCESSFUL){
+                showNoInternetLayout(false)
             }
         }
 
@@ -126,7 +136,6 @@ class HomeFragment : Fragment(), MovieClickListener{
             }
         })
     }
-
     private fun showSearchLayout(show: Boolean) {
         if (show) {
             binding.searchResultTxt.visibility = View.VISIBLE
@@ -141,6 +150,19 @@ class HomeFragment : Fragment(), MovieClickListener{
                 .setDuration(300)
                 .withEndAction { binding.searchResultRecycler.visibility = View.GONE }
         }
+    }
+    // when no internet then show this
+    private fun showNoInternetLayout(show: Boolean) {
+        if(show){
+            binding.noInternetLayout.visibility = View.VISIBLE
+            binding.popularTxt.visibility = View.GONE
+            binding.popularRecycler.visibility = View.GONE
+        }else{
+            binding.noInternetLayout.visibility = View.GONE
+            binding.popularRecycler.visibility = View.VISIBLE
+            binding.popularTxt.visibility = View.VISIBLE
+        }
+
     }
     // click listener callback  from Adapter
     override fun onMovieItemCLickListener(movieId: Int) {
