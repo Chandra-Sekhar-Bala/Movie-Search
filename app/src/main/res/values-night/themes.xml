@@ -18,6 +18,7 @@
         <item name="rectangle_bg_color">@color/dark_grey</item>
         <item name="grey_border_color">@color/light_blue</item>
         <item name="tag_text_color">@color/deepBlue</item>
+        <item name="save_as_favorite_filled">@drawable/favorite_icon_filled_green</item>
 
     </style>
 </resources>

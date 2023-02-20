@@ -1,17 +1,19 @@
 package com.qwk.chandrsekhar.ui.details
 
+import android.content.Context
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.AttrRes
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
-import com.bumptech.glide.request.target.DrawableImageViewTarget
 import com.bumptech.glide.request.transition.Transition
 import com.qwk.chandrsekhar.Constants
 import com.qwk.chandrsekhar.R
@@ -53,14 +55,11 @@ class MovieDetailsFragment : Fragment() {
 
         // if the movie is saved or not?
         viewModel.ifMovieSaved.observe(this) {
-            binding.saveAsFavorite.setImageDrawable(
-                ContextCompat.getDrawable(
-                    requireContext(), when (it) {
-                        true -> R.drawable.favorite_icon_filled
-                        false -> R.drawable.favorite_icon
-                    }
-                )
-            )
+            val drawable = when (it) {
+                true -> requireContext().getStyledDrawable(R.attr.save_as_favorite_filled)
+                false -> ContextCompat.getDrawable(requireContext(), R.drawable.favorite_icon)
+            }
+            binding.saveAsFavorite.setImageDrawable(drawable)
         }
         // save this as favorite
         binding.saveAsFavorite.setOnClickListener {
@@ -109,4 +108,10 @@ class MovieDetailsFragment : Fragment() {
         } catch (_: java.lang.Exception) {
         }
     }
+    fun Context.getStyledDrawable(@AttrRes attrId: Int): Drawable? {
+        val typedValue = TypedValue()
+        theme.resolveAttribute(attrId, typedValue, true)
+        return ContextCompat.getDrawable(this, typedValue.resourceId)
+    }
+
 }

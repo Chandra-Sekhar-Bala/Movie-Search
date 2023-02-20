@@ -5,5 +5,5 @@
     <attr name="rectangle_bg_color" format="color"/>
     <attr name="grey_border_color" format="color"/>
     <attr name="tag_text_color" format="color"/>
-
+    <attr name="save_as_favorite_filled" format="reference|color"/>
 </resources>
