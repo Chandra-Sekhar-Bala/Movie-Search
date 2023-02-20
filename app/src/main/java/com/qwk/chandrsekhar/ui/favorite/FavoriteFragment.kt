@@ -44,15 +44,22 @@ class FavoriteFragment : Fragment(), MovieClickListener{
             handleViewShowing(it.size)
             adapter.submitList(it)
         }
+
+        binding.gotHomeBtn.setOnClickListener{
+            val action = FavoriteFragmentDirections.actionFavoriteFragmentToHomeFragment()
+            findNavController().navigate(action)
+        }
     }
 
     private fun handleViewShowing(size: Int) {
         if(size > 0){
             binding.noSavedMovie.visibility = View.GONE
             binding.recyclerView.visibility = View.VISIBLE
+            binding.savedTxt.visibility = View.VISIBLE
         }else{
             binding.noSavedMovie.visibility = View.VISIBLE
             binding.recyclerView.visibility = View.GONE
+            binding.savedTxt.visibility = View.GONE
         }
     }
 
