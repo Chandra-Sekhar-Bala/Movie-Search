@@ -41,9 +41,21 @@ class FavoriteFragment : Fragment(), MovieClickListener{
         super.onResume()
         viewModel.getAllMovies()
         viewModel.movies.observe(this){
+            handleViewShowing(it.size)
             adapter.submitList(it)
         }
     }
+
+    private fun handleViewShowing(size: Int) {
+        if(size > 0){
+            binding.noSavedMovie.visibility = View.GONE
+            binding.recyclerView.visibility = View.VISIBLE
+        }else{
+            binding.noSavedMovie.visibility = View.VISIBLE
+            binding.recyclerView.visibility = View.GONE
+        }
+    }
+
     override fun onMovieItemCLickListener(movieId: Int) {
         val action = FavoriteFragmentDirections.actionFavoriteFragmentToMovieDetailsFragment(movieId)
         findNavController().navigate(action)

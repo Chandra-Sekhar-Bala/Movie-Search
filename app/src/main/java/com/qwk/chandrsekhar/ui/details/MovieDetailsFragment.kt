@@ -95,7 +95,7 @@ class MovieDetailsFragment : Fragment() {
 
         Glide.with(requireActivity())
             .load(Constants.posterPrefix + item.poster_img)
-            .placeholder(R.drawable.movie_icon)
+            .placeholder(R.drawable.movie_placeholder)
             .fitCenter()
             .into(binding.posterImage)
         try {

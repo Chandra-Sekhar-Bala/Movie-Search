@@ -14,8 +14,6 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.qwk.chandrsekhar.Constants
 import com.qwk.chandrsekhar.R
 import com.qwk.chandrsekhar.model.MovieResponse
-import com.qwk.chandrsekhar.ui.favorite.FavoriteFragment
-import kotlin.reflect.jvm.internal.impl.utils.DFS.VisitedWithSet
 
 class MovieAdapter(
     private val context: Context,
@@ -52,7 +50,7 @@ class MovieAdapter(
             .load(Constants.posterPrefix + data.posterUrl)
             .fitCenter()
             .transform(RoundedCorners(60))
-            .placeholder(R.drawable.movie_icon)
+            .placeholder(R.drawable.movie_placeholder)
             .into(holder.posterImg)
 
         // Listening to movie item click
