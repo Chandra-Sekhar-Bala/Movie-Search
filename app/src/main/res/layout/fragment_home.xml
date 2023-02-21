@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -63,7 +64,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="8dp"
-        android:text="Search Result"
+        android:text="@string/search_result"
         android:textSize="20sp"
         android:textStyle="bold"
         android:visibility="gone"
@@ -82,40 +83,59 @@
         tools:itemCount="2"
         tools:listitem="@layout/item_movie" />
 
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchResult_recycler"
+        app:shimmer_auto_start="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include layout="@layout/item_movie_shimmer" />
+
+            <include layout="@layout/item_movie_shimmer" />
+
+            <include layout="@layout/item_movie_shimmer" />
+
+            <include layout="@layout/item_movie_shimmer" />
+
+            <include layout="@layout/item_movie_shimmer" />
+
+            <include layout="@layout/item_movie_shimmer" />
+        </LinearLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
     <TextView
         android:id="@+id/popular_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
-        android:text="Popular"
+        android:text="@string/popular"
         android:textSize="22sp"
         android:textStyle="bold"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchResult_recycler" />
+        app:layout_constraintTop_toBottomOf="@+id/shimmer_layout" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/popular_recycler"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/popular_txt"
         tools:listitem="@layout/item_movie" />
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="@android:style/Widget.Holo.ProgressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/no_internet_layout"
@@ -138,27 +158,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/mulish"
-            android:text="No Internet Connection"
+            android:text="@string/no_internet_connection"
             android:textSize="20sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/mulish"
-            android:text="Check you connnection, then refresh the page" />
+            android:text="@string/check_you_connection" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/refresh_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="Refresh"
-            android:paddingHorizontal="20dp"
-            android:textColor="?attr/black_white_tint_color"
-            android:textAllCaps="false"
-            app:backgroundTint="@null"
             android:background="@drawable/btn_background"
-            />
+            android:paddingHorizontal="20dp"
+            android:text="@string/refresh"
+            android:textAllCaps="false"
+            android:textColor="?attr/black_white_tint_color"
+            app:backgroundTint="@null" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

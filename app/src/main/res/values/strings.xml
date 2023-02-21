@@ -3,5 +3,10 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="imdb_rating">%s/10 IMDB</string>
+    <string name="check_you_connection">Check you connection, then refresh the page</string>
+    <string name="refresh">Refresh</string>
+    <string name="no_internet_connection">No Internet Connection</string>
+    <string name="popular">Popular</string>
+    <string name="search_result">Search Result</string>
 
 </resources>

@@ -15,7 +15,7 @@ import com.qwk.chandrsekhar.adapter.MovieAdapter
 import com.qwk.chandrsekhar.adapter.MovieClickListener
 import com.qwk.chandrsekhar.databinding.FragmentHomeBinding
 
-class HomeFragment : Fragment(), MovieClickListener{
+class HomeFragment : Fragment(), MovieClickListener {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var viewModel: HomeViewModel
     private lateinit var popularMovieAdapter: MovieAdapter
@@ -53,7 +53,7 @@ class HomeFragment : Fragment(), MovieClickListener{
     override fun onResume() {
         super.onResume()
 
-        binding.refreshBtn.setOnClickListener{
+        binding.refreshBtn.setOnClickListener {
             viewModel.getPopularMovies()
         }
 
@@ -61,16 +61,21 @@ class HomeFragment : Fragment(), MovieClickListener{
             popularMovieAdapter.submitList(it)
         }
         viewModel.popularMovieProgress.observe(this) {
-            binding.progressBar.visibility = when (it!!) {
-                Progress.LOADING -> View.VISIBLE
-                Progress.SUCCESSFUL -> View.GONE
-                Progress.FAILED -> View.GONE
-            }
-            if (it == Progress.FAILED) {
-                Toast.makeText(requireContext(), "Check your internet", Toast.LENGTH_LONG).show()
-                showNoInternetLayout(true)
-            }else if(it == Progress.SUCCESSFUL){
-                showNoInternetLayout(false)
+            when (it!!) {
+                Progress.FAILED -> {
+                    Toast.makeText(requireContext(), "Check your internet", Toast.LENGTH_LONG)
+                        .show()
+                    showNoInternetLayout(true)
+                    binding.shimmerLayout.visibility = View.GONE
+                }
+                Progress.SUCCESSFUL -> {
+                    showNoInternetLayout(false)
+                    binding.shimmerLayout.visibility = View.GONE
+                }
+                Progress.LOADING -> {
+                    showNoInternetLayout(false)
+                    binding.shimmerLayout.visibility = View.VISIBLE
+                }
             }
         }
 
@@ -80,62 +85,73 @@ class HomeFragment : Fragment(), MovieClickListener{
 
         }
         viewModel.searchProgress.observe(this) {
-            binding.progressBar.visibility = when (it!!) {
-                Progress.LOADING -> View.VISIBLE
-                Progress.SUCCESSFUL -> View.GONE
-                Progress.FAILED -> View.GONE
-            }
-            if (it == Progress.FAILED ) {
-                Toast.makeText(requireContext(), "Check your internet", Toast.LENGTH_LONG).show()
-                showNoInternetLayout(true)
-            }else if(it == Progress.SUCCESSFUL){
-                showNoInternetLayout(false)
+            when (it!!) {
+                Progress.FAILED -> {
+                    Toast.makeText(requireContext(), "Check your internet", Toast.LENGTH_LONG)
+                        .show()
+                    showNoInternetLayout(true)
+                    binding.shimmerLayout.visibility = View.GONE
+                }
+                Progress.SUCCESSFUL -> {
+                    showNoInternetLayout(false)
+                    binding.shimmerLayout.visibility = View.GONE
+                }
+                Progress.LOADING -> {
+                    showNoInternetLayout(false)
+                    binding.shimmerLayout.visibility = View.VISIBLE
+                }
             }
         }
 
         // for pagination : Listening to Popular movie recycler scrolling
-        binding.popularRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-                val lastVisibleItemPosition = popularLayoutManager.findLastVisibleItemPosition()
-                val totalItemCount = popularLayoutManager.itemCount
-                if (lastVisibleItemPosition == totalItemCount - 1) {
-                    viewModel.loadNexPopularMoviePage()
+        binding.popularRecycler.addOnScrollListener(
+            object : RecyclerView.OnScrollListener() {
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                    super.onScrolled(recyclerView, dx, dy)
+                    val lastVisibleItemPosition = popularLayoutManager.findLastVisibleItemPosition()
+                    val totalItemCount = popularLayoutManager.itemCount
+                    if (lastVisibleItemPosition == totalItemCount - 1) {
+                        viewModel.loadNexPopularMoviePage()
+                    }
                 }
-            }
-        })
+            })
 
         // for pagination : Listening to Search movie recycler scrolling
-        binding.searchResultRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-                val lastVisible = searchLayoutManager.findLastVisibleItemPosition()
-                val totalItemCount = searchLayoutManager.itemCount
-                if (lastVisible == totalItemCount - 1) {
-                    viewModel.loadNexSearchMoviePage()
+        binding.searchResultRecycler.addOnScrollListener(
+            object : RecyclerView.OnScrollListener() {
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                    super.onScrolled(recyclerView, dx, dy)
+                    val lastVisible = searchLayoutManager.findLastVisibleItemPosition()
+                    val totalItemCount = searchLayoutManager.itemCount
+                    if (lastVisible == totalItemCount - 1) {
+                        viewModel.loadNexSearchMoviePage()
+                    }
                 }
-            }
-        })
+            })
 
         // search for movies
-        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(text: String?): Boolean {
-                if (text == null || text.isEmpty()) {
-                    showSearchLayout(false)
+        binding.searchView.setOnQueryTextListener(
+            object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(text: String?): Boolean {
+                    if (text == null || text.isEmpty()) {
+                        showSearchLayout(false)
+                    }else {
+                        viewModel.searchMovie(text)
+                    }
+                    return true
                 }
-                return true
-            }
 
-            override fun onQueryTextChange(text: String?): Boolean {
-                if (text == null || text.isEmpty()) {
-                    showSearchLayout(false)
-                }else {
-                    viewModel.searchMovie(text)
+                override fun onQueryTextChange(text: String?): Boolean {
+                    if (text == null || text.isEmpty()) {
+                        showSearchLayout(false)
+                    } else {
+                        viewModel.searchMovie(text)
+                    }
+                    return true
                 }
-                return true
-            }
-        })
+            })
     }
+
     private fun showSearchLayout(show: Boolean) {
         if (show) {
             binding.searchResultTxt.visibility = View.VISIBLE
@@ -151,19 +167,21 @@ class HomeFragment : Fragment(), MovieClickListener{
                 .withEndAction { binding.searchResultRecycler.visibility = View.GONE }
         }
     }
+
     // when no internet then show this
     private fun showNoInternetLayout(show: Boolean) {
-        if(show){
+        if (show) {
             binding.noInternetLayout.visibility = View.VISIBLE
             binding.popularTxt.visibility = View.GONE
             binding.popularRecycler.visibility = View.GONE
-        }else{
+        } else {
             binding.noInternetLayout.visibility = View.GONE
             binding.popularRecycler.visibility = View.VISIBLE
             binding.popularTxt.visibility = View.VISIBLE
         }
 
     }
+
     // click listener callback  from Adapter
     override fun onMovieItemCLickListener(movieId: Int) {
         // swap in details fragment
