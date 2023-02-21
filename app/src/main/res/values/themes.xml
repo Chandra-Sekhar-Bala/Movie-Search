@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.QWK" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/deepBlue</item>
+        <item name="colorPrimary">@color/black</item>
         <item name="colorPrimaryVariant">@color/dark_grey</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->

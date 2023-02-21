@@ -9,8 +9,9 @@
 
     <item
         android:id="@+id/favoriteFragment"
-        android:icon="@drawable/favorite_icon"
-        android:title="Favorite" />
+        android:icon="@drawable/favorite_icon_filled"
+        android:title="Favorite"
+        />
 
 
 </menu>
