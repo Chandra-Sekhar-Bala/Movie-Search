@@ -17,4 +17,17 @@ A movie searching application can search and see details about the movie with a 
 - Search for any Movie.
 - See the details of the Movie.
 - Save the movie for future use.
+
+## Tech Stack
+  1. Kotlin
+  2. Android
+  3. MVVM pattern
+  4. Viewmodel and Livedata
+  5. Retrofit
+  6. Coroutine
+  7. Room
+  8. Navigation Comonent
+  9. Splash Screen API
+  11. Dependency Injection (Hilt)
+  12. Shimmer Loading effect
   
